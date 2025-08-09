@@ -1,0 +1,21 @@
+# Netlify redirects file
+# Root redirect
+/                    /homepage.html                200
+
+# Clean URL redirects (without .html extension)
+/homepage            /homepage.html                200
+/about               /about.html                   200
+/contact-us          /contact-us.html              200
+/contact             /contact-us.html              200
+/jobs                /jobs.html                    200
+/careers             /jobs.html                    200
+/services            /services.html                200
+/gallery             /rmc-gallery.html             200
+/rmc-gallery         /rmc-gallery.html             200
+
+# Asset handling - ensure fonts and images are served correctly
+/fonts/*             /fonts/:splat                 200
+/images/*            /images/:splat                200
+
+# Fallback for any unmatched routes (404 handling)
+/*                   /homepage.html                404

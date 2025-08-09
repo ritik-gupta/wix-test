@@ -1,0 +1,126 @@
+[build]
+  # Build settings - since this is a static site, no build command needed
+  publish = "."
+  
+[build.environment]
+  # Environment variables for build process
+  NODE_VERSION = "18"
+
+# Redirect rules for clean URLs and routing
+[[redirects]]
+  # Redirect root to homepage
+  from = "/"
+  to = "/homepage.html"
+  status = 200
+
+[[redirects]]
+  # Clean URL routing - remove .html extension
+  from = "/homepage"
+  to = "/homepage.html"
+  status = 200
+
+[[redirects]]
+  # About page routing
+  from = "/about"
+  to = "/about.html"
+  status = 200
+
+[[redirects]]
+  # Contact page routing
+  from = "/contact-us"
+  to = "/contact-us.html"
+  status = 200
+  
+[[redirects]]
+  # Contact alternative routing
+  from = "/contact"
+  to = "/contact-us.html"
+  status = 200
+
+[[redirects]]
+  # Jobs page routing
+  from = "/jobs"
+  to = "/jobs.html"
+  status = 200
+  
+[[redirects]]
+  # Careers alternative routing
+  from = "/careers"
+  to = "/jobs.html"
+  status = 200
+
+[[redirects]]
+  # Services page routing
+  from = "/services"
+  to = "/services.html"
+  status = 200
+
+[[redirects]]
+  # Gallery page routing
+  from = "/gallery"
+  to = "/rmc-gallery.html"
+  status = 200
+  
+[[redirects]]
+  # RMC Gallery routing
+  from = "/rmc-gallery"
+  to = "/rmc-gallery.html"
+  status = 200
+
+# Headers for performance and security
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Security headers
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    
+    # Performance headers
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    # HTML files should not be cached as aggressively
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    # Font files can be cached for a long time
+    Cache-Control = "public, max-age=31536000, immutable"
+    Access-Control-Allow-Origin = "*"
+
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    # Image files can be cached for a long time
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Error page handling
+[[redirects]]
+  # 404 redirect to homepage
+  from = "/*"
+  to = "/homepage.html"
+  status = 404
+
+# Prerender settings for better SEO
+[build.processing]
+  skip_processing = false
+  
+[build.processing.css]
+  bundle = true
+  minify = true
+
+[build.processing.js]
+  bundle = true
+  minify = true
+
+[build.processing.html]
+  pretty_urls = true
+
+# Form handling (if you have contact forms)
+[build.processing.forms]
+  forms = true
