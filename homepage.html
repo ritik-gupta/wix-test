@@ -554,6 +554,37 @@
   .LHrbPP:focus {
       top: 10px !important;
   }
+
+  /* NAVBAR GAP FIX */
+  /* Force the actual header element to be fixed to the top and remove
+     any top margins/padding that can create a transient white gap. */
+  header.comp-mbam5igf, .comp-mbam5igf {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      z-index: 99999 !important;
+      background-color: #fff !important; /* keep navbar visible */
+      margin: 0 !important;
+      padding: 0 !important;
+  }
+
+  /* Ensure site wrappers don't add a top offset */
+  #site-root, #SITE_CONTAINER, #main_MF {
+      margin-top: 0 !important;
+      padding-top: 0 !important;
+  }
+
+  /* Keep the scroll-to-top helper hidden so it doesn't create layout shifts */
+  #SCROLL_TO_TOP {
+      height: 0 !important;
+      overflow: hidden !important;
+  }
+
+  /* Prevent overscroll behavior causing visual shift on some browsers */
+  body {
+      overscroll-behavior-y: contain;
+  }
   
   /* Custom circle element styling */
   #SITE_CONTAINER #main_MF#main_MF .css-editing-scope .wixui-circle {
